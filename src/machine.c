@@ -9,7 +9,7 @@
 #include "machine.h"
 #include <stdlib.h>
 
-
+// Création dynamique de la mémoire
 Memory* memory_create() {
     Memory* mem;
 
@@ -30,6 +30,7 @@ Memory* memory_create() {
     return mem;
 }
 
+// Création dynamique du registre
 Register* register_create() {
     Register* reg;
 
@@ -41,6 +42,32 @@ Register* register_create() {
     return reg;
 }
 
+// Chargment direct du registre
+void load_direct(Register* reg, MACHINE_MEMORY_TYPE val) {
+    reg->val = val;
+}
+
+// Chargement du registre depuis la mémoire
+void load_from(Register* reg, Memory* mem, unsigned index) {
+    reg->val = mem->data[index];
+}
+
+// Sauvegarde du registre vers la mémoire
+void store_to(Register* reg, Memory* mem, unsigned index) {
+    mem->data[index] = reg->val;
+}
+
+// Incrémentation du registre
+void increment(Register* reg) {
+    ++reg->val;
+}
+
+// Décrémentation du registre
+void decrement(Register* reg) {
+    --reg->val;
+}
+
+// Libération de la mémoire allouée pour Memory et ses champs 
 void memory_delete(Memory** mem) {
     //Libère data puis mem, et met *mem à NULL via le double pointeur
     free((*mem)->data);
@@ -49,6 +76,7 @@ void memory_delete(Memory** mem) {
     (*mem) = NULL;
 }
 
+// Libération de la mémoire allouée pour Register et ses champs 
 void register_delete(Register** reg) {
     //Libère *reg puis le met à NULL via le double pointeur
     free(*reg);

@@ -13,10 +13,20 @@ int main() {
     Memory* mem = memory_create();
     Register* reg = register_create();
 
-    printf("Valeurs des cases de la mémoire :\n");
+    load_direct(reg, 3);
+    store_to(reg, mem, 0);
+    increment(reg);
+    increment(reg);
+    store_to(reg, mem, 1);
+    load_from(reg, mem, 0);
+    decrement(reg);
+    store_to(reg, mem, 2);
+
+    
     for (size_t i = 0; i < MACHINE_MEMORY_SIZE; ++i)
         printf(MACHINE_MEMORY_TYPE_STRF " ", mem->data[i]);
-    printf("\nLa valeur du registre vaut " MACHINE_MEMORY_TYPE_STRF "\n", reg->val);
+    printf("\n");
+
 
     memory_delete(&mem);
     register_delete(&reg);
