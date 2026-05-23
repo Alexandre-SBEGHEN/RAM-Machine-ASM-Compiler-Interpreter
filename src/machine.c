@@ -16,13 +16,13 @@ Memory* memory_create() {
     if ((mem = malloc(sizeof(Memory))) == NULL)
         return NULL;
     
-    // Initialisation du tableau à 0 avec calloc
+    //Initialisation du tableau à 0 avec calloc
     if ((mem->data = calloc(MACHINE_MEMORY_SIZE, sizeof(MACHINE_MEMORY_TYPE))) == NULL) {
         free(mem);
         return NULL;
     }
 
-    // Si valeur par défaut != 0 calloc ne suffit pas
+    //Si valeur par défaut != 0 calloc ne suffit pas
     if (MACHINE_MEMORY_DEFAULT_VALUE != 0)
         for (size_t i = 0; i < MACHINE_MEMORY_SIZE; ++i)
             mem->data[i] = MACHINE_MEMORY_DEFAULT_VALUE;
@@ -42,7 +42,7 @@ Register* register_create() {
     return reg;
 }
 
-// Chargement direct du registre
+// Chargment direct du registre
 void load_direct(Register* reg, MACHINE_MEMORY_TYPE val) {
     reg->val = val;
 }
@@ -69,7 +69,7 @@ void decrement(Register* reg) {
 
 // Libération de la mémoire allouée pour Memory et ses champs 
 void memory_delete(Memory** mem) {
-    // Libère data puis mem, et met *mem à NULL via le double pointeur
+    //Libère data puis mem, et met *mem à NULL via le double pointeur
     free((*mem)->data);
     free(*mem);
 
@@ -78,7 +78,7 @@ void memory_delete(Memory** mem) {
 
 // Libération de la mémoire allouée pour Register et ses champs 
 void register_delete(Register** reg) {
-    // Libère *reg puis le met à NULL via le double pointeur
+    //Libère *reg puis le met à NULL via le double pointeur
     free(*reg);
 
     (*reg) = NULL;
