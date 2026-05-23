@@ -26,3 +26,12 @@ Cette machine est équipée du jeu d'instructions suivant :
 | `JUMP <étiquette>` | Saut inconditionnel à l'étiquette |
 | `JZ <étiquette>` | Saut à l'étiquette si (registre ≤ 0) |
 | `HALT` | Arrêt du programme |
+
+## Progression
+
+- [x] Machine RAM (mémoire + registre)
+- [x] Instructions de base (load, store, increment, decrement)
+- [ ] Compilateur
+- [ ] Interpréteur
+- [ ] Gestion des étiquettes & sauts
+- [ ] Interface utilisateur
