@@ -1,3 +1,15 @@
+/**
+ * @file machine.h
+ * @brief Interface de la machine RAM.
+ * 
+ * Déclare les constantes, les structures,
+ * les alias, et les fonctions pour initialiser,
+ * manipuler, et détruire une machine RAM. 
+ * 
+ * @author Alexandre SBEGHEN
+ * @date 2026-05-23
+ */
+
 #ifndef MACHINE_H
 #define MACHINE_H
 
@@ -84,27 +96,6 @@ void increment(Register* reg);
  * @param reg L'adresse du registre
  */
 void decrement(Register* reg);
-
-/**
- * @brief Saut inconditionnel à l’étiquette (nombre)
- * 
- * @param index Indice associé à l'étiquette
- */
-void jump(unsigned index);
-
-/**
- * @brief Saut à l'étiquette (nombre) si (registre ≤ 0)
- * 
- * @param reg L'adresse du registre
- * @param index Indice associé à l'étiquette
- */
-void jumpzero(Register*, unsigned index);
-
-/**
- * @brief Arrêt du programme
- */
-void halt();
-
 
 /**
  * @brief Libère la mémoire allouée par la création du struct `Memory`. A exécuter en fin de programme.

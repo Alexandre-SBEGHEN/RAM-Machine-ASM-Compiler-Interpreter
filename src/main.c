@@ -1,3 +1,11 @@
+/**
+ * @file main.c
+ * @brief Point d'entrée du programme.
+ *
+ * @author Alexandre SBEGHEN
+ * @date 2026-05-23
+ */
+
 #include <stdio.h>
 #include "machine.h"
 

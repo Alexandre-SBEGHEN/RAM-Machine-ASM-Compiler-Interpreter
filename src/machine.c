@@ -1,3 +1,11 @@
+/**
+ * @file machine.c
+ * @brief Implémentation de la machine RAM.
+ * 
+ * @author Alexandre SBEGHEN
+ * @date 2026-05-23
+ */
+
 #include "machine.h"
 #include <stdlib.h>
 
