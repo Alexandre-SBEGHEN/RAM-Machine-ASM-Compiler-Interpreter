@@ -46,68 +46,68 @@ struct MemoryS {
 /**
  * @brief Crée dynamiquement un struct `Memory` pour la mémoire de la machine. Initialise toutes les cases à `MACHINE_MEMORY_DEFAULT_VALUE`.
  * 
- * @return L'adresse du struct de la mémoire.
+ * @return L'adresse du struct de la mémoire, ou NULL en cas d'échec d'allocation.
  */
 Memory* memory_create();
 
 /**
  * @brief Crée dynamiquement un struct `Register` pour le registre de la machine. Initialise sa valeur à `MACHINE_REGISTER_DEFAULT_VALUE`.
  * 
- * @return L'adresse du struct du registre.
+ * @return L'adresse du struct du registre, ou NULL en cas d'échec d'allocation.
  */
 Register* register_create();
 
 /**
- * @brief Chargement direct du registre
+ * @brief Chargement direct du registre.
  * 
- * @param reg L'adresse du registre
- * @param val La valeur à charger
+ * @param reg L'adresse du registre.
+ * @param val La valeur à charger.
  */
 void load_direct(Register* reg, MACHINE_MEMORY_TYPE val);
 
 /**
- * @brief Chargement du registre depuis la mémoire
+ * @brief Chargement du registre depuis la mémoire.
  * 
- * @param reg L'adresse du registre
- * @param mem L'adresse de la mémoire
- * @param val L'index de la case mémoire
+ * @param reg L'adresse du registre.
+ * @param mem L'adresse de la mémoire.
+ * @param index L'index de la case mémoire.
  */
 void load_from(Register* reg, Memory* mem, unsigned index);
 
 /**
- * @brief Rangement du registre vers la mémoire
+ * @brief Rangement du registre vers la mémoire.
  * 
- * @param reg L'adresse du registre
- * @param mem L'adresse de la mémoire
- * @param val L'index de la case mémoire
+ * @param reg L'adresse du registre.
+ * @param mem L'adresse de la mémoire.
+ * @param index L'index de la case mémoire.
  */
 void store_to(Register* reg, Memory* mem, unsigned index);
 
 /**
- * @brief Incrémentation du registre
+ * @brief Incrémentation du registre.
  * 
- * @param reg L'adresse du registre
+ * @param reg L'adresse du registre.
  */
 void increment(Register* reg);
 
 /**
- * @brief Décrémentation du registre
+ * @brief Décrémentation du registre.
  * 
- * @param reg L'adresse du registre
+ * @param reg L'adresse du registre.
  */
 void decrement(Register* reg);
 
 /**
  * @brief Libère la mémoire allouée par la création du struct `Memory`. A exécuter en fin de programme.
  * 
- * @param mem L'adresse du pointeur du struct de la mémoire
+ * @param mem L'adresse du pointeur du struct de la mémoire.
  */
 void memory_delete(Memory** mem);
 
 /**
  * @brief Libère la mémoire allouée par la création du struct `Register`. A exécuter en fin de programme.
  * 
- * @param reg L'adresse du pointeur struct du registre
+ * @param reg L'adresse du pointeur struct du registre.
  */
 void register_delete(Register** reg);
 
