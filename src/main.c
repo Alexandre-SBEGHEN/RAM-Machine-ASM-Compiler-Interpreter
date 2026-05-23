@@ -13,6 +13,7 @@ int main() {
     Memory* mem = memory_create();
     Register* reg = register_create();
 
+    // Test
     load_direct(reg, 3);
     store_to(reg, mem, 0);
     increment(reg);
@@ -22,12 +23,13 @@ int main() {
     decrement(reg);
     store_to(reg, mem, 2);
 
-    
+    // Sortie : afficher la mémoire
+    printf("----- Mémoire -----\n");
     for (size_t i = 0; i < MACHINE_MEMORY_SIZE; ++i)
-        printf(MACHINE_MEMORY_TYPE_STRF " ", mem->data[i]);
-    printf("\n");
+        printf("%lu :\t" MACHINE_MEMORY_TYPE_STRF "\n", i, mem->data[i]);
+    printf("-------------------\n");
 
-
+    // Libération de la mémoire allouée par Memory et Register
     memory_delete(&mem);
     register_delete(&reg);
     return 0;

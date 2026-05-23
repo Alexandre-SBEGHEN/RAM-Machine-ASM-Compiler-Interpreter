@@ -16,7 +16,7 @@
 // ------------------------------ CONSTANTES ------------------------------
 #define MACHINE_MEMORY_TYPE long            /* Type de données inscrites dans les cases de la mémoire */
 #define MACHINE_MEMORY_TYPE_STRF "%ld"      /* Formattage du type dans une string */
-#define MACHINE_MEMORY_SIZE 16              /* Taille de la mémoire (i.e. nombre de cases) */
+#define MACHINE_MEMORY_SIZE 8              /* Taille de la mémoire (i.e. nombre de cases) */
 #define MACHINE_MEMORY_DEFAULT_VALUE 0      /* Valeur par défaut des cases de la mémoire lors de sa création */
 #define MACHINE_REGISTER_DEFAULT_VALUE 0    /* Valeur par défaut du registre lors de sa création */
 
