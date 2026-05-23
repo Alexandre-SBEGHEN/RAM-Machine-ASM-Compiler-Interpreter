@@ -42,7 +42,7 @@ Register* register_create() {
     return reg;
 }
 
-// Chargment direct du registre
+// Chargement direct du registre
 void load_direct(Register* reg, MACHINE_MEMORY_TYPE val) {
     reg->val = val;
 }
