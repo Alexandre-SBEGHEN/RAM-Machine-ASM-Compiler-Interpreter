@@ -1,0 +1,24 @@
+# Dossier de build
+build/
+
+# Fichiers objets et exécutables
+*.o
+*.out
+*.exe
+*.a
+*.so
+
+# Fichiers de debug
+*.dSYM/
+core
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
