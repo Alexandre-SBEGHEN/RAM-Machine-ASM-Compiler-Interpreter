@@ -1,8 +1,49 @@
 #ifndef MACHINE_H
 #define MACHINE_H
 
-#define MACHINE_MEMORY_TYPE int
-#define MACHINE_MEMORY_SIZE 128
+// ------------------------------ CONSTANTES ------------------------------
+#define MACHINE_MEMORY_TYPE long            /* Type de données inscrites dans les cases de la mémoire */
+#define MACHINE_MEMORY_TYPE_STRF "%ld"      /* Formattage du type dans une string */
+#define MACHINE_MEMORY_SIZE 128             /* Taille de la mémoire (i.e. nombre de cases) */
+#define MACHINE_MEMORY_DEFAULT_VALUE 0      /* Valeur par défaut des cases de la mémoire lors de sa création */
+#define MACHINE_REGISTER_DEFAULT_VALUE 0    /* Valeur par défaut du registre lors de sa création */
+
+// ------------------------------ ALIAS ------------------------------
+
+typedef struct RegisterS Register;  /* Alias du type struct `RegisterS` */
+typedef struct MemoryS Memory;      /* Alias du type struct `MemoryS` */
+
+// ------------------------------ STRUCTS ------------------------------
+
+/**
+ * @brief Registre de la machine. Ne peut contenir qu'une valeur de type `MACHINE_MEMORY_TYPE`.
+ */
+struct RegisterS {
+    MACHINE_MEMORY_TYPE val; /* Valeur du registre */
+};
+
+/**
+ * @brief Mémoire de la machine. Peut contenir `MACHINE_MEMORY_SIZE` valeurs de type `MACHINE_MEMORY_TYPE`.
+ */
+struct MemoryS {
+    MACHINE_MEMORY_TYPE* data; /* Cases de la mémoire */
+};
+
+// ------------------------------ FONCTIONS ------------------------------
+
+/**
+ * @brief Crée dynamiquement un struct `Memory` pour la mémoire de la machine. Initialise toutes les cases à `MACHINE_MEMORY_DEFAULT_VALUE`.
+ * 
+ * @return L'adresse du struct de la mémoire.
+ */
+Memory* memory_create();
+
+/**
+ * @brief Crée dynamiquement un struct `Register` pour le registre de la machine. Initialise sa valeur à `MACHINE_REGISTER_DEFAULT_VALUE`.
+ * 
+ * @return L'adresse du struct du registre.
+ */
+Register* register_create();
 
 /**
  * @brief Chargement direct du registre
@@ -10,37 +51,39 @@
  * @param reg L'adresse du registre
  * @param val La valeur à charger
  */
-void load_direct(MACHINE_MEMORY_TYPE* reg, MACHINE_MEMORY_TYPE val);
+void load_direct(Register* reg, MACHINE_MEMORY_TYPE val);
 
 /**
- * @brief Chargement du registre vers la mémoire
+ * @brief Chargement du registre depuis la mémoire
  * 
  * @param reg L'adresse du registre
+ * @param mem L'adresse de la mémoire
  * @param val L'index de la case mémoire
  */
-void load_from(MACHINE_MEMORY_TYPE* reg, unsigned index);
+void load_from(Register* reg, Memory* mem, unsigned index);
 
 /**
- * @brief Rangement du registre depuis la mémoire
+ * @brief Rangement du registre vers la mémoire
  * 
  * @param reg L'adresse du registre
+ * @param mem L'adresse de la mémoire
  * @param val L'index de la case mémoire
  */
-void store_to(MACHINE_MEMORY_TYPE* reg, unsigned index);
+void store_to(Register* reg, Memory* mem, unsigned index);
 
 /**
  * @brief Incrémentation du registre
  * 
  * @param reg L'adresse du registre
  */
-void increment(MACHINE_MEMORY_TYPE* reg);
+void increment(Register* reg);
 
 /**
  * @brief Décrémentation du registre
  * 
  * @param reg L'adresse du registre
  */
-void decrement(MACHINE_MEMORY_TYPE* reg);
+void decrement(Register* reg);
 
 /**
  * @brief Saut inconditionnel à l’étiquette (nombre)
@@ -55,12 +98,26 @@ void jump(unsigned index);
  * @param reg L'adresse du registre
  * @param index Indice associé à l'étiquette
  */
-void jumpzero(MACHINE_MEMORY_TYPE* reg, unsigned index);
+void jumpzero(Register*, unsigned index);
 
 /**
  * @brief Arrêt du programme
  */
 void halt();
 
+
+/**
+ * @brief Libère la mémoire allouée par la création du struct `Memory`. A exécuter en fin de programme.
+ * 
+ * @param mem L'adresse du pointeur du struct de la mémoire
+ */
+void memory_delete(Memory** mem);
+
+/**
+ * @brief Libère la mémoire allouée par la création du struct `Register`. A exécuter en fin de programme.
+ * 
+ * @param reg L'adresse du pointeur struct du registre
+ */
+void register_delete(Register** reg);
 
 #endif

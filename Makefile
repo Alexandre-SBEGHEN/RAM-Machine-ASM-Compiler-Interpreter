@@ -1,5 +1,5 @@
 CC      = gcc
-CFLAGS  = -Wall -Wextra -std=c11 -Iinclude
+CFLAGS  = -Wall -Wextra -std=c11 -Iinclude -MMD -MP
 LDFLAGS =
 
 SRC_DIR   = src
@@ -7,6 +7,7 @@ BUILD_DIR = build
 
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
+DEPS = $(OBJS:.o=.d)
 
 TARGET = $(BUILD_DIR)/ram_machine
 
@@ -29,3 +30,5 @@ clean:
 re: clean all
 
 .PHONY: all clean re
+
+-include $(DEPS)
