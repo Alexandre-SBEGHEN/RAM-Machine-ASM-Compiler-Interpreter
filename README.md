@@ -51,5 +51,6 @@ Le tableau suivant récapitule les instructions du jeu d'instructions de la mach
 - [x] Instructions de base (load, store, increment, decrement)
 - [ ] Compilateur
 - [ ] Interpréteur
-- [ ] Gestion des étiquettes & sauts
+- [ ] Gestion des étiquettes (compilation)
+- [ ] Prise en charge des sauts (interpréteur)
 - [ ] Interface utilisateur
