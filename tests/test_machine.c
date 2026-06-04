@@ -114,11 +114,46 @@ void test_load_from() {
     memory_delete(&mem);
 }
 
+/**
+ * @brief Vérifie que les valeurs sauvegardées dans la mémoire soient les bonnes
+ */
+void test_store_to() {
+    Memory* mem = memory_create();
+    Register* reg = register_create();
+
+    // Message d'erreur
+    const char* msg = "Erreur du rangement du registre vers la mémoire";
+
+    reg->val = 0;
+    store_to(reg, mem, 0);
+    reg->val = 1;
+    store_to(reg, mem, 1);
+    reg->val = 3;
+    store_to(reg, mem, 2);
+    reg->val = 2;
+    store_to(reg, mem, 3);
+    reg->val = -1;
+    store_to(reg, mem, 4);
+    reg->val = -67;
+    store_to(reg, mem, 5);
+
+    assert(mem->data[0] == 0, msg);
+    assert(mem->data[1] == 1, msg);
+    assert(mem->data[2] == 3, msg);
+    assert(mem->data[3] == 2, msg);
+    assert(mem->data[4] == -1, msg);
+    assert(mem->data[5] == -67, msg);
+
+    register_delete(&reg);
+    memory_delete(&mem);
+}
+
 int main() {
     test_memory_create();
     test_register_create();
     test_load_direct();
     test_load_from();
+    test_store_to();
 
     printf(COL_GREEN __FILE__ " - Tous les tests sont au vert." COL_RESET);
     return 0;
