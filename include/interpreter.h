@@ -52,7 +52,8 @@ Program* program_create(const long number_of_instructions);
 void program_interpret(const Program* prog);
 
 /**
- * @brief Libère la mémoire allouée par la création du struct `Program`. A exécuter en fin de programme.
+ * @brief Libère la mémoire allouée par la création du struct `Program`.
+ * A exécuter en fin d'interprétation de ce dernier.
  * 
  * @param prog L'adresse du pointeur struct du programme.
  */
