@@ -37,3 +37,15 @@ Program* program_create(const size_t number_of_instructions) {
 
     return prog;
 }
+
+// Libération de la mémoire allouée pour Program et ses champs 
+void program_delete(Program** prog) {
+    if (prog == NULL || *prog == NULL) return;
+
+    // Libère les champs de prog et le met à NULL via le double pointeur
+    free((*prog)->data);
+    free((*prog)->instructions);
+    free(*prog);
+
+    (*prog) = NULL;
+}
