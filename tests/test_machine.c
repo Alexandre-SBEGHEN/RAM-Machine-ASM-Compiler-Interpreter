@@ -148,12 +148,40 @@ void test_store_to() {
     memory_delete(&mem);
 }
 
+/**
+ * @brief Vérifie que l'incrémentation du registre fonctionne.
+ */
+void test_increment() {
+    Register* reg = register_create();
+    reg->val = 0;
+
+    // Message d'erreur
+    const char* msg = "Erreur lors de l'incrémentation du registre";
+
+    increment(reg);
+    assert(reg->val == 1, msg);
+    increment(reg);
+    increment(reg);
+    increment(reg);
+    assert(reg->val == 4, msg);
+    increment(reg);
+    increment(reg);
+    increment(reg);
+    increment(reg);
+    increment(reg);
+    increment(reg);
+    assert(reg->val == 10, msg);
+
+    register_delete(&reg);
+}
+
 int main() {
     test_memory_create();
     test_register_create();
     test_load_direct();
     test_load_from();
     test_store_to();
+    test_increment();
 
     printf(COL_GREEN __FILE__ " - Tous les tests sont au vert." COL_RESET);
     return 0;
