@@ -11,4 +11,4 @@
 #define COL_RED "\033[91m"
 #define COL_GREEN "\033[92m"
 
-void assert(int expression, char* fail_message);
+void assert(const int expression, const char* fail_message);
