@@ -28,9 +28,11 @@ typedef struct ProgramS Program;  /* Alias du type struct `ProgramS` */
  * 
  * La première colonne est l'instruction à exécuter, 
  * et la seconde colonne est l'argument de l'instruction.
+ * 
  */
 struct ProgramS {
-    MACHINE_MEMORY_TYPE** instructions;
+    long** instructions;
+    long* data;
 };
 
 // ------------------------------ FONCTIONS ------------------------------
