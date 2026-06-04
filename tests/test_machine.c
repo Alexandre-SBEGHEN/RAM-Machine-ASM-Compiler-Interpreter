@@ -82,10 +82,43 @@ void test_load_direct() {
     register_delete(&reg);
 }
 
+/**
+ * @brief Vérifie que le registre charge bien les bonnes valeurs qui sont dans la mémoire.
+ */
+void test_load_from() {
+    Memory* mem = memory_create();
+    Register* reg = register_create();
+
+    // Message d'erreur
+    const char* msg = "Erreur du chargement du registre depuis la mémoire";
+
+    // Initialisation arbitraire des données de la mémoire
+    mem->data[0] = 0;
+    mem->data[1] = 1;
+    mem->data[2] = 3;
+    mem->data[5] = -1;
+    mem->data[6] = -67;
+
+    load_from(reg, mem, 0);
+    assert(reg->val == 0, msg);
+    load_from(reg, mem, 1);
+    assert(reg->val == 1, msg);
+    load_from(reg, mem, 2);
+    assert(reg->val == 3, msg);
+    load_from(reg, mem, 5);
+    assert(reg->val == -1, msg);
+    load_from(reg, mem, 6);
+    assert(reg->val == -67, msg);
+
+    register_delete(&reg);
+    memory_delete(&mem);
+}
+
 int main() {
     test_memory_create();
     test_register_create();
     test_load_direct();
+    test_load_from();
 
     printf(COL_GREEN __FILE__ " - Tous les tests sont au vert." COL_RESET);
     return 0;
