@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include "test.h"
 
-void assert(int expression, char* fail_message) {
+void assert(const int expression, const char* fail_message) {
     if (!expression) {
         fprintf(stderr, COL_RED "ERREUR : " __FILE__ " - %s" COL_RESET, fail_message);
         exit(1);
