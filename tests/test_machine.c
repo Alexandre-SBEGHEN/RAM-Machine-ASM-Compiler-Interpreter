@@ -175,6 +175,33 @@ void test_increment() {
     register_delete(&reg);
 }
 
+/**
+ * @brief Vérifie que la décrémentation du registre fonctionne.
+ */
+void test_decrement() {
+    Register* reg = register_create();
+    reg->val = 0;
+
+    // Message d'erreur
+    const char* msg = "Erreur lors de la décrémentation du registre";
+
+    decrement(reg);
+    assert(reg->val == -1, msg);
+    decrement(reg);
+    decrement(reg);
+    decrement(reg);
+    assert(reg->val == -4, msg);
+    decrement(reg);
+    decrement(reg);
+    decrement(reg);
+    decrement(reg);
+    decrement(reg);
+    decrement(reg);
+    assert(reg->val == -10, msg);
+
+    register_delete(&reg);
+}
+
 int main() {
     test_memory_create();
     test_register_create();
@@ -182,7 +209,8 @@ int main() {
     test_load_from();
     test_store_to();
     test_increment();
+    test_decrement();
 
-    printf(COL_GREEN __FILE__ " - Tous les tests sont au vert." COL_RESET);
+    printf(COL_GREEN __FILE__ " - Tous les tests de 'machine.c' sont au vert." COL_RESET);
     return 0;
 }
