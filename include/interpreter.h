@@ -33,4 +33,22 @@ struct ProgramS {
     MACHINE_MEMORY_TYPE** instructions;
 };
 
+// ------------------------------ FONCTIONS ------------------------------
+
+/**
+ * @brief Crée un programme vide avec un certain nombre d'instructions.
+ * 
+ * @param number_of_instructions Nombre d'instructions que contiendra le programme.
+ * 
+ * @return L'adresse de la structure du programme.
+ */
+Program* program_create(const long number_of_instructions);
+
+/**
+ * @brief Interprète un programme compilé en amont.
+ * 
+ * @param prog Le programme compilé qui est une structure `Program`.
+ */
+void program_interpret(const Program* prog);
+
 #endif
