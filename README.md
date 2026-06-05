@@ -50,7 +50,7 @@ Le tableau suivant récapitule les instructions du jeu d'instructions de la mach
 - [x] Machine RAM (mémoire + registre)
 - [x] Instructions de base (load, store, increment, decrement)
 - [ ] Compilateur
-- [ ] Interpréteur
+- [x] Interpréteur
 - [ ] Gestion des étiquettes (compilation)
-- [ ] Prise en charge des sauts (interpréteur)
+- [x] Prise en charge des sauts (interpréteur)
 - [ ] Interface utilisateur
