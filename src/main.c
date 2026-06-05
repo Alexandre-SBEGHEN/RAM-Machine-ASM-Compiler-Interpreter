@@ -26,7 +26,7 @@ int main() {
     // Sortie : afficher la mémoire
     printf("----- Mémoire -----\n");
     for (size_t i = 0; i < MACHINE_MEMORY_SIZE; ++i)
-        printf("%lu :\t" MACHINE_MEMORY_TYPE_STRF "\n", i, mem->data[i]);
+        printf("%lu :\t%ld\n", i, mem->data[i]);
     printf("-------------------\n");
 
     // Libération de la mémoire allouée par Memory et Register
