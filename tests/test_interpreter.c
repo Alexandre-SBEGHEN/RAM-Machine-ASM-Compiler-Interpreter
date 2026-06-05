@@ -66,13 +66,33 @@ void test_program_interpret() {
             JZ for;			# si i <= 0 goto for
             
             HALT;
-    
+    */
     prog->instructions[0][0] = 1;
-    prog->instructions[0][1] = 1;
+    prog->instructions[0][1] = -9;
     prog->instructions[1][0] = 3;
-    prog->instructions[1][1] = 3;
-*/
-
+    prog->instructions[1][1] = 2;
+    prog->instructions[2][0] = 2;
+    prog->instructions[2][1] = 0;
+    prog->instructions[3][0] = 4;
+    prog->instructions[4][0] = 3;
+    prog->instructions[4][1] = 0;
+    prog->instructions[5][0] = 2;
+    prog->instructions[5][1] = 2;
+    prog->instructions[6][0] = 4;
+    prog->instructions[7][0] = 3;
+    prog->instructions[7][1] = 2;
+    prog->instructions[8][0] = 7;
+    prog->instructions[8][1] = 2;
+    prog->instructions[9][0] = 8;
+    mem->data[0] = 7;
+    program_interpret(prog, mem, reg);
+    assert(mem->data[0] == 17, "Erreur du programme test 2");
+    mem->data[0] = 0;
+    program_interpret(prog, mem, reg);
+    assert(mem->data[0] == 10, "Erreur du programme test 2");
+    mem->data[0] = -5;
+    program_interpret(prog, mem, reg);
+    assert(mem->data[0] == 5, "Erreur du programme test 2");
 
     program_delete(&prog);
     register_delete(&reg);
