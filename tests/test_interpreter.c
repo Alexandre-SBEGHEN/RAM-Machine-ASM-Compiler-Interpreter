@@ -30,7 +30,18 @@ void test_program_create() {
     program_delete(&prog);
 }
 
-
+/***
+ * @brief Exécute quelques programmes simples et vérifie les valeurs dans la mémoire.
+ * 
+ * - Le premier programme enregistre la valeur 0 dans A (stocké dans la case 0).
+ * 
+ * - Le deuxième programme ajoute 10 à A.
+ * 
+ * - Le troisième programme calcule la valeur absolue de A.
+ * 
+ * Pour chaque programme, quelques sous-cas sont testés également
+ * pour être sûr qu'il ne s'agit pas d'une réussite par chance.
+ */
 void test_program_interpret() {
     Memory* mem = memory_create();
     Register* reg = register_create();
