@@ -42,10 +42,17 @@ struct ProgramS {
  * @brief Crée un programme vide avec un certain nombre d'instructions.
  * 
  * @param number_of_instructions Nombre d'instructions que contiendra le programme.
- * 
  * @return L'adresse de la structure du programme.
  */
 Program* program_create(const size_t number_of_instructions);
+
+/**
+ * @brief Crée une structure `Program` à partir d'un fichier binaire (code asm compilé).
+ * 
+ * @param file Le chemin vers le fichier binaire.
+ * @return La structure `Program`.
+ */
+Program* bin_to_program(FILE* file);
 
 /**
  * @brief Interprète un programme compilé en amont.

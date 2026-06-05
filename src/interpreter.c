@@ -39,6 +39,42 @@ Program* program_create(const size_t number_of_instructions) {
     return prog;
 }
 
+// Création d'une structure Program à partir d'un .bin
+Program* bin_to_program(FILE* file) {
+    if (file == NULL) return NULL;
+
+    //Vérifier que le fichier contient des blocs de 8 octets (paire instruction / opérande)
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    rewind(file);
+    if (file_size % 8 != 0) return NULL;
+
+    // Le nombre d'instructions est la taille du fichier / 8
+    long number_of_instructions = file_size / 8;
+    Program* prog = program_create(number_of_instructions);
+    if (prog == NULL) return NULL;
+
+    // Encodage des instructions
+    for (size_t i = 0; i < number_of_instructions; ++i) {
+        // On place chaque "partie" (octet) du nombre dans un buffer
+        unsigned char instbytes[4], argbytes[4];
+        if (fread(instbytes, 1, 4, file) != 4 || fread(argbytes, 1, 4, file) != 4) {
+            program_delete(&prog);
+            return NULL;
+        }
+
+        // On concatène les parties pour obtenir le grand nombre (4 octets)
+        long inst = (long)((long)instbytes[0] << 24 | (long)instbytes[1] << 16 | (long)instbytes[2] << 8 | (long)instbytes[3]);
+        long arg = (long)((long)argbytes[0] << 24 | (long)argbytes[1] << 16 | (long)argbytes[2] << 8 | (long)argbytes[3]);
+
+        // On encode inst et arg dans le programme
+        prog->instructions[i][0] = inst;
+        prog->instructions[i][1] = arg;
+    }
+
+    return prog;
+}
+
 // Exécution du programme compilé
 void program_interpret(const Program* prog, Memory* mem, Register* reg) {
     size_t instruction_index = 0;
