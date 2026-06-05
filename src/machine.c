@@ -69,7 +69,7 @@ void decrement(Register* reg) {
 
 // Libération de la mémoire allouée pour Memory et ses champs 
 void memory_delete(Memory** mem) {
-    if (reg == NULL || *reg == NULL) return;
+    if (mem == NULL || *mem == NULL) return;
 
     //Libère data puis mem, et met *mem à NULL via le double pointeur
     if ((*mem)->data != NULL)
