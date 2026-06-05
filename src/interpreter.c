@@ -9,6 +9,7 @@
 #include "interpreter.h"
 #include "machine.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 // Création dynamique du programme compilé
 Program* program_create(const size_t number_of_instructions) {

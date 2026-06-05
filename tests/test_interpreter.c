@@ -45,11 +45,9 @@ void test_program_interpret() {
     prog->instructions[0][0] = 1;
     prog->instructions[0][1] = 1;
     prog->instructions[1][0] = 3;
-    prog->instructions[1][1] = 3;
+    prog->instructions[1][1] = 0;
     prog->instructions[2][0] = 8;
-    printf("%ld\n", mem->data[0]);
     program_interpret(prog, mem, reg);
-    printf("%ld\n", mem->data[0]);
     assert(mem->data[0] == 1, "Erreur du programme test 1");
 
     /* Programme test 2

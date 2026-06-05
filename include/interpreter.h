@@ -51,8 +51,8 @@ Program* program_create(const size_t number_of_instructions);
  * @brief Interprète un programme compilé en amont.
  * 
  * @param prog Le programme compilé qui est une structure `Program`.
- * @param mem L'adresse de la mémoire.
- * @param reg L'adresse du registre.
+ * @param mem L'adresse du pointeur struct de la mémoire.
+ * @param reg L'adresse du pointeur struct du registre.
  */
 void program_interpret(const Program* prog, Memory* mem, Register* reg);
 
