@@ -8,6 +8,7 @@
 
 #include "machine.h"
 #include <stdlib.h>
+#include <stdint.h>
 
 // Création dynamique de la mémoire
 Memory* memory_create() {
@@ -17,7 +18,7 @@ Memory* memory_create() {
         return NULL;
     
     //Initialisation du tableau à 0 avec calloc
-    if ((mem->data = calloc(MACHINE_MEMORY_SIZE, sizeof(long))) == NULL) {
+    if ((mem->data = calloc(MACHINE_MEMORY_SIZE, sizeof(MACHINE_MEMORY_TYPE))) == NULL) {
         free(mem);
         return NULL;
     }
@@ -43,17 +44,17 @@ Register* register_create() {
 }
 
 // Chargment direct du registre
-void load_direct(Register* reg, const long val) {
+void load_direct(Register* reg, const MACHINE_MEMORY_TYPE val) {
     reg->val = val;
 }
 
 // Chargement du registre depuis la mémoire
-void load_from(Register* reg, Memory* mem, const long index) {
+void load_from(Register* reg, Memory* mem, const MACHINE_MEMORY_TYPE index) {
     reg->val = mem->data[index];
 }
 
 // Sauvegarde du registre vers la mémoire
-void store_to(Register* reg, Memory* mem, const long index) {
+void store_to(Register* reg, Memory* mem, const MACHINE_MEMORY_TYPE index) {
     mem->data[index] = reg->val;
 }
 

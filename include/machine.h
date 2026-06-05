@@ -13,8 +13,12 @@
 #ifndef MACHINE_H
 #define MACHINE_H
 
+// ------------------------------ IMPORTS ------------------------------
+#include <stdio.h>
+#include <stdint.h>
+
 // ------------------------------ CONSTANTES ------------------------------
-// #define MACHINE_MEMORY_TYPE long            /* Type de données inscrites dans les cases de la mémoire */
+// #define MACHINE_MEMORY_TYPE int32_t            /* Type de données inscrites dans les cases de la mémoire */
 // #define MACHINE_MEMORY_TYPE_STRF "%ld"      /* Formattage du type dans une string */
 #define MACHINE_MEMORY_SIZE 8               /* Taille de la mémoire (i.e. nombre de cases) */
 #define MACHINE_MEMORY_DEFAULT_VALUE 0      /* Valeur par défaut des cases de la mémoire lors de sa création */
@@ -22,6 +26,7 @@
 
 // ------------------------------ ALIAS ------------------------------
 
+typedef int32_t MACHINE_MEMORY_TYPE;
 typedef struct RegisterS Register;  /* Alias du type struct `RegisterS` */
 typedef struct MemoryS Memory;      /* Alias du type struct `MemoryS` */
 
@@ -31,14 +36,14 @@ typedef struct MemoryS Memory;      /* Alias du type struct `MemoryS` */
  * @brief Registre de la machine. Ne peut contenir qu'une valeur de type `MACHINE_MEMORY_TYPE`.
  */
 struct RegisterS {
-    long val; /* Valeur du registre */
+    MACHINE_MEMORY_TYPE val; /* Valeur du registre */
 };
 
 /**
  * @brief Mémoire de la machine. Peut contenir `MACHINE_MEMORY_SIZE` valeurs de type `MACHINE_MEMORY_TYPE`.
  */
 struct MemoryS {
-    long* data; /* Cases de la mémoire */
+    MACHINE_MEMORY_TYPE* data; /* Cases de la mémoire */
 };
 
 // ------------------------------ FONCTIONS ------------------------------
@@ -63,7 +68,7 @@ Register* register_create();
  * @param reg L'adresse du registre.
  * @param val La valeur à charger.
  */
-void load_direct(Register* reg, const long val);
+void load_direct(Register* reg, const MACHINE_MEMORY_TYPE val);
 
 /**
  * @brief Chargement du registre depuis la mémoire.
@@ -72,7 +77,7 @@ void load_direct(Register* reg, const long val);
  * @param mem L'adresse de la mémoire.
  * @param index L'index de la case mémoire.
  */
-void load_from(Register* reg, Memory* mem, const long index);
+void load_from(Register* reg, Memory* mem, const MACHINE_MEMORY_TYPE index);
 
 /**
  * @brief Rangement du registre vers la mémoire.
@@ -81,7 +86,7 @@ void load_from(Register* reg, Memory* mem, const long index);
  * @param mem L'adresse de la mémoire.
  * @param index L'index de la case mémoire.
  */
-void store_to(Register* reg, Memory* mem, const long index);
+void store_to(Register* reg, Memory* mem, const MACHINE_MEMORY_TYPE index);
 
 /**
  * @brief Incrémentation du registre.

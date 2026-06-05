@@ -32,8 +32,8 @@ typedef struct ProgramS Program;  /* Alias du type struct `ProgramS` */
  * 
  */
 struct ProgramS {
-    long** instructions;
-    long* data;
+    MACHINE_MEMORY_TYPE** instructions;
+    MACHINE_MEMORY_TYPE* data;
 };
 
 // ------------------------------ FONCTIONS ------------------------------

@@ -19,13 +19,13 @@ Program* program_create(const size_t number_of_instructions) {
         return NULL;
     
     // Création dynamique du tableau d'adresses
-    if ((prog->instructions = malloc(number_of_instructions * sizeof(long*))) == NULL) {
+    if ((prog->instructions = malloc(number_of_instructions * sizeof(MACHINE_MEMORY_TYPE*))) == NULL) {
         free(prog);
         return NULL;
     }
 
     // Création dynamique des données de la matrice
-    if ((prog->data = calloc(number_of_instructions * 2, sizeof(long))) == NULL) {
+    if ((prog->data = calloc(number_of_instructions * 2, sizeof(MACHINE_MEMORY_TYPE))) == NULL) {
         free(prog->instructions);
         free(prog);
         return NULL;
@@ -55,17 +55,27 @@ Program* bin_to_program(FILE* file) {
     if (prog == NULL) return NULL;
 
     // Encodage des instructions
-    for (size_t i = 0; i < number_of_instructions; ++i) {
+    for (long i = 0; i < number_of_instructions; ++i) {
         // On place chaque "partie" (octet) du nombre dans un buffer
         unsigned char instbytes[4], argbytes[4];
         if (fread(instbytes, 1, 4, file) != 4 || fread(argbytes, 1, 4, file) != 4) {
             program_delete(&prog);
             return NULL;
         }
-
+        
         // On concatène les parties pour obtenir le grand nombre (4 octets)
-        long inst = (long)((long)instbytes[0] << 24 | (long)instbytes[1] << 16 | (long)instbytes[2] << 8 | (long)instbytes[3]);
-        long arg = (long)((long)argbytes[0] << 24 | (long)argbytes[1] << 16 | (long)argbytes[2] << 8 | (long)argbytes[3]);
+        MACHINE_MEMORY_TYPE inst = (MACHINE_MEMORY_TYPE)(
+            (MACHINE_MEMORY_TYPE)instbytes[0] << 24 |
+            (MACHINE_MEMORY_TYPE)instbytes[1] << 16 |
+            (MACHINE_MEMORY_TYPE)instbytes[2] << 8  |
+            (MACHINE_MEMORY_TYPE)instbytes[3]
+        );
+        MACHINE_MEMORY_TYPE arg = (MACHINE_MEMORY_TYPE)(
+            (MACHINE_MEMORY_TYPE)argbytes[0] << 24 |
+            (MACHINE_MEMORY_TYPE)argbytes[1] << 16 |
+            (MACHINE_MEMORY_TYPE)argbytes[2] << 8  |
+            (MACHINE_MEMORY_TYPE)argbytes[3]
+        );
 
         // On encode inst et arg dans le programme
         prog->instructions[i][0] = inst;
@@ -81,8 +91,8 @@ void program_interpret(const Program* prog, Memory* mem, Register* reg) {
 
     // Boucle du programme
     while (1) {
-        long inst = prog->instructions[instruction_index][0]; // Instruction actuelle
-        long arg = prog->instructions[instruction_index][1];  // Argument / opérande actuel
+        MACHINE_MEMORY_TYPE inst = prog->instructions[instruction_index][0]; // Instruction actuelle
+        MACHINE_MEMORY_TYPE arg = prog->instructions[instruction_index][1];  // Argument / opérande actuel
 
         // Action à faire selon l'instruction
         switch (inst) {
