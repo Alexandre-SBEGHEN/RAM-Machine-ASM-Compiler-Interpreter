@@ -92,8 +92,10 @@ void program_delete(Program** prog) {
     if (prog == NULL || *prog == NULL) return;
 
     // Libère les champs de prog et le met à NULL via le double pointeur
-    free((*prog)->data);
-    free((*prog)->instructions);
+    if ((*prog)->data != NULL)
+        free((*prog)->data);
+    if ((*prog)->instructions != NULL)
+        free((*prog)->instructions);
     free(*prog);
 
     (*prog) = NULL;

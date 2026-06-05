@@ -69,8 +69,11 @@ void decrement(Register* reg) {
 
 // Libération de la mémoire allouée pour Memory et ses champs 
 void memory_delete(Memory** mem) {
+    if (reg == NULL || *reg == NULL) return;
+
     //Libère data puis mem, et met *mem à NULL via le double pointeur
-    free((*mem)->data);
+    if ((*mem)->data != NULL)
+        free((*mem)->data);
     free(*mem);
 
     (*mem) = NULL;
@@ -78,6 +81,8 @@ void memory_delete(Memory** mem) {
 
 // Libération de la mémoire allouée pour Register et ses champs 
 void register_delete(Register** reg) {
+    if (reg == NULL || *reg == NULL) return;
+
     //Libère *reg puis le met à NULL via le double pointeur
     free(*reg);
 
