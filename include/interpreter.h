@@ -50,8 +50,10 @@ Program* program_create(const long number_of_instructions);
  * @brief Interprète un programme compilé en amont.
  * 
  * @param prog Le programme compilé qui est une structure `Program`.
+ * @param mem L'adresse de la mémoire.
+ * @param reg L'adresse du registre.
  */
-void program_interpret(const Program* prog);
+void program_interpret(const Program* prog, Memory* mem, Register* reg);
 
 /**
  * @brief Libère la mémoire allouée par la création du struct `Program`.
