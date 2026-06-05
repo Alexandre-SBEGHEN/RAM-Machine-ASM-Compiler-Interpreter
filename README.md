@@ -56,6 +56,7 @@ L'interpréteur parcourt ensuite ce tableau séquentiellement, en exécutant cha
 - [x] Machine RAM (mémoire + registre)
 - [x] Instructions de base (load, store, increment, decrement)
 - [ ] Compilateur
+- [ ] Fichier binaire -> structure Program exploitable par l'interpréteur
 - [x] Interpréteur
 - [ ] Gestion des étiquettes (compilation)
 - [x] Prise en charge des sauts (interpréteur)
