@@ -44,8 +44,8 @@ void program_interpret(const Program* prog, Memory* mem, Register* reg) {
 
     // Boucle du programme
     while (1) {
-        long inst = prog[instruction_index][0]; // Instruction actuelle
-        long arg = prog[instruction_index][1];  // Argument / opérande actuel
+        long inst = prog->instructions[instruction_index][0]; // Instruction actuelle
+        long arg = prog->instructions[instruction_index][1];  // Argument / opérande actuel
 
         // Action à faire selon l'instruction
         switch (inst) {

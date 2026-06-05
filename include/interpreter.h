@@ -14,6 +14,7 @@
 
 // ------------------------------ IMPORTS ------------------------------
 #include "machine.h"
+#include <stddef.h>
 
 // ------------------------------ ALIAS ------------------------------
 
@@ -44,7 +45,7 @@ struct ProgramS {
  * 
  * @return L'adresse de la structure du programme.
  */
-Program* program_create(const long number_of_instructions);
+Program* program_create(const size_t number_of_instructions);
 
 /**
  * @brief Interprète un programme compilé en amont.
