@@ -13,7 +13,9 @@
   * @brief Vérifie les choses suivantes :
   * 
   * - La création de la mémoire
+  * 
   * - La création du tableau des cases
+  * 
   * - Les cases sont initialisées à `MACHINE_MEMORY_DEFAULT_VALUE`
   */
 void test_memory_create() {
@@ -36,6 +38,7 @@ void test_memory_create() {
   * @brief Vérifie les choses suivantes :
   * 
   * - La création du registre
+  * 
   * - Sa valeur est initialisée à `MACHINE_REGISTER_DEFAULT_VALUE`
   */
 void test_register_create() {
