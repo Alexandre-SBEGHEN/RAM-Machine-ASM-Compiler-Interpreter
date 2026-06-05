@@ -211,6 +211,6 @@ int main() {
     test_increment();
     test_decrement();
 
-    printf(COL_GREEN __FILE__ " - Tous les tests de 'machine.c' sont au vert." COL_RESET);
+    printf(COL_GREEN __FILE__ " - Tous les tests pour 'machine.c' sont au vert." COL_RESET);
     return 0;
 }
