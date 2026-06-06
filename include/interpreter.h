@@ -52,7 +52,7 @@ Program* program_create(const size_t number_of_instructions);
  * @param file Le chemin vers le fichier binaire.
  * @return La structure `Program`.
  */
-Program* bin_to_program(FILE* file);
+Program* bin_to_program(char* filename);
 
 /**
  * @brief Interprète un programme compilé en amont.

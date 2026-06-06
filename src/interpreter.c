@@ -40,7 +40,9 @@ Program* program_create(const size_t number_of_instructions) {
 }
 
 // Création d'une structure Program à partir d'un .bin
-Program* bin_to_program(FILE* file) {
+Program* bin_to_program(char* filename) {
+    FILE* file = fopen(filename, "r");
+
     if (file == NULL) return NULL;
 
     //Vérifier que le fichier contient des blocs de 8 octets (paire instruction / opérande)
