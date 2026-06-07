@@ -84,6 +84,8 @@ Program* bin_to_program(char* filename) {
         prog->instructions[i][1] = arg;
     }
 
+    fclose(file);
+
     return prog;
 }
 
