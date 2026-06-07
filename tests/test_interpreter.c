@@ -6,6 +6,7 @@
  * @date 2026-06-à5
  */
 #include <stdio.h>
+#include <string.h>
 #include "test.h"
 #include "machine.h"
 #include "interpreter.h"
@@ -28,6 +29,32 @@ void test_program_create() {
     assert(prog->data != NULL, "Echec de création du champ data");
 
     program_delete(&prog);
+}
+
+/***
+ * @brief Importe quelques programmes au format .bin et vérifie que la structure `Program` qui en résulte est correcte.
+ * 
+ * - Le premier programme enregistre la valeur 0 dans A (stocké dans la case 0).
+ * 
+ * - Le deuxième programme ajoute 10 à A.
+ * 
+ * - Le troisième programme calcule la valeur absolue de A.
+ * 
+ * @note Le test échourera si une erreur survient lors de l'ouverture des fichiers qui lui sont nécessaires.
+ */
+void test_bin_to_program() {
+    // Définition des fichiers externes utile au test
+    char* filename_1 = "./assets/test_bin_to_program_a_equals_0.bin";
+    char* filename_2 = "./assets/test_bin_to_program_a_equals_a_plus_10.bin";
+    char* filename_3 = "./assets/test_bin_to_program_a_equals_abs_of_a.bin";
+    
+    // Tentative d'ouverture des fichiers
+    
+    
+
+
+
+    
 }
 
 /***
@@ -179,6 +206,7 @@ void test_program_interpret() {
 int main() {
     test_program_create();
     test_program_interpret();
+    test_bin_to_program();
 
     printf(COL_GREEN __FILE__ " - Tous les tests pour 'interpreter.c' sont au vert." COL_RESET);
     return 0;
